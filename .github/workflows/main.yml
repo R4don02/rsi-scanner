@@ -1,0 +1,26 @@
+name: RSI scan
+
+on:
+  schedule:
+    - cron: "3 * * * *"
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - run: python rsi_scan.py
+        env:
+          INTERVAL_MIN: "60"
+          RSI_THRESHOLD: "30"
+          MIN_USD_VOL: "10000000"
+          MAX_SPREAD_PCT: "0.10"
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
