@@ -18,7 +18,7 @@ jobs:
       - run: python rsi_scan.py
         env:
           INTERVAL_MIN: "60"
-          RSI_THRESHOLD: "70"
+          RSI_THRESHOLD: "30"
           MIN_USD_VOL: "10000000"
           MAX_SPREAD_PCT: "0.10"
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
