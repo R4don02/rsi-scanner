@@ -1,4 +1,4 @@
-aname: RSI scan
+name: RSI scan
 
 on:
   schedule:
